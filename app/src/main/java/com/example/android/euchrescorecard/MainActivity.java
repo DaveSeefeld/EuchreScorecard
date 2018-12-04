@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
     int scoreTeamA = 0;
     int scoreTeamB = 0;
-    int isGameOver = 0;
+    boolean isGameOver = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
         outState.putInt("scoreAVar", scoreTeamA);
         outState.putInt("scoreBVar", scoreTeamB);
-        outState.putInt("isGameOver", isGameOver);
+        outState.putBoolean("isGameOver", isGameOver);
         displayForTeamA(scoreTeamA);
         displayForTeamB(scoreTeamB);
 
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         super.onRestoreInstanceState(savedInstanceState);
         scoreTeamA = savedInstanceState.getInt("scoreAVar");
         scoreTeamB = savedInstanceState.getInt("scoreBVar");
-        isGameOver = savedInstanceState.getInt("isGameOver");
+        isGameOver = savedInstanceState.getBoolean("isGameOver");
         displayForTeamA(scoreTeamA);
         displayForTeamB(scoreTeamB);
     }
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         scoreView.setText(String.valueOf(score));
         if (score == 10) {
             Toast.makeText(getApplicationContext(), R.string.team_a_wins, Toast.LENGTH_SHORT).show();
-            isGameOver = 1;
+            isGameOver = true;
         }
     }
 
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
      * Increase the score for Team A by 4 points.
      */
     public void addFourForTeamA(View v) {
-        if (isGameOver == 0) {
+        if (isGameOver == false) {
             scoreTeamA = Math.min(scoreTeamA + 4, 10);
             displayForTeamA(scoreTeamA);
         }
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
      * Increase the score for Team A by 2 points.
      */
     public void addTwoForTeamA(View v) {
-        if (isGameOver == 0) {
+        if (isGameOver == false) {
             scoreTeamA = Math.min(scoreTeamA + 2, 10);
             displayForTeamA(scoreTeamA);
         }
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
      * Increase the score for Team A by 1 points.
      */
     public void addOneForTeamA(View v) {
-        if (isGameOver == 0) {
+        if (isGameOver == false) {
             scoreTeamA = Math.min(scoreTeamA + 1, 10);
             displayForTeamA(scoreTeamA);
         }
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
         scoreView.setText(String.valueOf(score));
         if (score == 10) {
             Toast.makeText(getApplicationContext(), R.string.team_b_wins, Toast.LENGTH_SHORT).show();
-            isGameOver = 1;
+            isGameOver = true;
         }
     }
 
@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
      * Increase the score for Team B by 4 points.
      */
     public void addFourForTeamB(View v) {
-        if (isGameOver == 0) {
+        if (isGameOver == false) {
             scoreTeamB = Math.min(scoreTeamB + 4, 10);
             displayForTeamB(scoreTeamB);
         }
@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
      * Increase the score for Team B by 2 points.
      */
     public void addTwoForTeamB(View v) {
-        if (isGameOver == 0) {
+        if (isGameOver == false) {
             scoreTeamB = Math.min(scoreTeamB + 2, 10);
             displayForTeamB(scoreTeamB);
         }
@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
      * Increase the score for Team B by 1 points.
      */
     public void addOneForTeamB(View v) {
-        if (isGameOver == 0) {
+        if (isGameOver == false) {
             scoreTeamB = Math.min(scoreTeamB + 1, 10);
             displayForTeamB(scoreTeamB);
         }
@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
         displayForTeamA(scoreTeamA);
         scoreTeamB = 0;
         displayForTeamB(scoreTeamB);
-        isGameOver = 0;
+        isGameOver = false;
     }
 
 }
